@@ -358,7 +358,9 @@ When you reload the page, everything loads instantly, even though it was super s
 
 What do you think this means? (press enter to submit) <<textbox "$why_instant_guess" "" "New info (cached)">>
 
+<div style="margin-top: 2em">
 [[I don't know->New info (cached)]]
+</div>
 
 :: New info (cached)
 
@@ -396,7 +398,9 @@ You don't care about the headers, though, you want to understand why the website
 
 What do you think you need to click on? (press enter to submit) <<textbox "$info_slow" "" "Network tab 5 timings">>
 
+<div style="margin-top: 2em">
 [[I don't know->Network tab 5 timings]]
+</div>
 
 :: Network tab 5 timings {"position":"1361,348","size":"100,100"}
 
@@ -406,7 +410,10 @@ Information about why the webpage took so long to load is in the "Timings" tab, 
 
 
 What do you think this means? (press enter to submit) &nbsp; <<textbox "$info_slow" "" "New info (dns slow)">>
+
+<div style="margin-top: 2em">
 [[I don't know->New info (dns slow)]]
+</div>
 
 
 :: New info (dns slow)
@@ -514,7 +521,9 @@ This output tells you what DNS server your browser is using! What is it?
 
 What's the IP address of the DNS server? (press enter to submit) <<textbox "$dns_server_guess" "" "Tcpdump DNS server">>
 
+<div style="margin-top: 2em">
 [[I don't know->Tcpdump DNS server]]
+</div>
 
 ::Tcpdump DNS server
 <<if $dns_server_guess eq "192.168.1.1">>
@@ -537,7 +546,9 @@ So far you know that:
 
 What do you think you could do to fix these slow websites, given this information? (press enter to submit) <<textbox "$how_to_fix" "" "Fix the problem">>
 
+<div style="margin-top: 2em">
 [[I don't know->Fix the problem]]
+</div>
 
 :: Fix the problem
 

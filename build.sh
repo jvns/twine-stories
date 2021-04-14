@@ -1,1 +1,1 @@
-./bin/tweego slow-website.twee -o index.html
+./bin/tweego slow-website.twee -o slow-website.html

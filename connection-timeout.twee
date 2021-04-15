@@ -111,10 +111,10 @@ listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
 Here's the tcpdump output you see:
 
 <pre style="white-space: pre-wrap;">
-17:33:01.563903 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247063724 ecr 0,nop,wscale 7], length 0
-17:33:02.582918 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247064743 ecr 0,nop,wscale 7], length 0
-17:33:04.662878 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247066823 ecr 0,nop,wscale 7], length 0
-17:33:08.719754 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247070880 ecr 0,nop,wscale 7], length 0
+17:33:01.563903 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247063724 ecr 0,nop,wscale 7], length 0 <br>
+17:33:02.582918 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247064743 ecr 0,nop,wscale 7], length 0 <br>
+17:33:04.662878 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247066823 ecr 0,nop,wscale 7], length 0 <br>
+17:33:08.719754 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247070880 ecr 0,nop,wscale 7], length 0 <br>
 </pre>
 
 <<ask "What kind of packets are these?" "$packets" "Try tcpdump 3">>

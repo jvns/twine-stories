@@ -279,6 +279,12 @@ html[data-debug-view] .debug.hidden .debug {
   margin: .5em;
 }
 
+@media screen and (min-width: 500px) {
+    .passage {
+        padding-top: 4em;
+    }
+}
+
 .passage .link-internal {
   background-color: #57c;
 }

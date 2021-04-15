@@ -283,6 +283,10 @@ html[data-debug-view] .debug.hidden .debug {
   background-color: #57c;
 }
 
+.link-internal code {
+    color: white;
+}
+
 .passage .link-internal.link-visited {
   background-color: #69e;
 }

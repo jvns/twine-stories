@@ -75,14 +75,14 @@ You run
 $ sudo tcpdump -i any port 1234
 </pre>
 
-It doesn't show anything. You  <<test>>
+It doesn't show anything.
 
 [[Go back->Landing]]
 [[Reload the page in your browser->Try tcpdump 2]]
 
 :: Try tcpdump 2
 
-Here's the output you see:
+Here's the tcpdump output you see:
 
 <pre style="white-space: pre-wrap;">
 17:33:01.563903 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247063724 ecr 0,nop,wscale 7], length 0
@@ -91,11 +91,7 @@ Here's the output you see:
 17:33:08.719754 lo    In  IP 192.168.1.121.38002 > 12.3.2.5.1234: Flags [S], seq 596753197, win 65495, options [mss 65495,sackOK,TS val 4247070880 ecr 0,nop,wscale 7], length 0
 </pre>
 
-What kind of packets are these? (press enter to submit) <<textbox "$packets" "" "Try tcpdump 3">>
-
-<div style="margin-top: 2em">
-[[I don't know->Try tcpdump 3]]
-</div>
+<<ask "What kind of packets are these?" "$packets" "Try tcpdump 3">>
 
 :: Try tcpdump 3
 
@@ -110,9 +106,10 @@ So now we know that there are a bunch of SYN packets being sent, but not any oth
 
 <<newinfo "There are SYN packets being sent over and over again">>
 
-Why do you think these SYN packets are being retried? (press enter to submit) <<textbox "$why_syn" "" "Try tcpdump 4">>
+<<ask "Why do you think these SYN packets are being retried?" "$why_syn" "Try tcpdump 4">>
 
 :: Try tcpdump 4
+
 
 <<if !$why_syn eq "">>Your reason for the SYN packets being retried: "<strong><<print $why_syn>></strong>".<</if>>
 

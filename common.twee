@@ -1,6 +1,8 @@
 :: New information [widget]
 <<widget "newinfo">>
+<<if !$knowledge.has($args[0])>>
 <div class="newinfo"><h2> you've found new information!! </h2><<run $knowledge.add($args[0])>><p>Adding <strong>"<<print $args[0]>>"</strong> to your "What you know" list.</p> </div>
+<</if>>
 <</widget>>
 
 
@@ -11,8 +13,13 @@
 <</widget>>
 
 
-<<widget "test">>
-hi
+<!-- <<ask "Why do you think this happened?" "$variable" "Next page">> -->
+<<widget "ask">>
+<<print $args[0]>> &nbsp; <<textbox $args[1] "" $args[2]>>
+<div style="display: flex">
+<<link "Submit" $args[2]>><</link>>
+<<link "I don't know" $args[2]>><</link>>
+</div>
 <</widget>>
 
 
@@ -255,7 +262,7 @@ html[data-debug-view] .debug.hidden .debug {
   background-color: #68d;
   color: white;
   display: inline-block;
-  margin: .5em 0;
+  margin: .5em;
 }
 
 .passage a.nobutton {

@@ -530,7 +530,6 @@ $ sudo iptables-save -c
 :DOCKER-ISOLATION-STAGE-1 - [0:0] <br>
 :DOCKER-ISOLATION-STAGE-2 - [0:0] <br>
 :DOCKER-USER - [0:0] <br>
-[1:60] -A INPUT -p tcp -m tcp --dport 1234 -j DROP <br>
 [0:0] -A FORWARD -j DOCKER-USER <br>
 [0:0] -A FORWARD -j DOCKER-ISOLATION-STAGE-1 <br>
 [0:0] -A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT <br>

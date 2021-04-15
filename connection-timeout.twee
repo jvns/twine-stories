@@ -208,7 +208,7 @@ Do you think this is the cause of your problem?
 
 <p> These rules are saying that only traffic on ports 22, 80, and 443 is allowed. So your request on port 1234 isn't allowed!  It looks like AWS is the problem! </p>
 
-<<newinfo "Request on port 1234 are not allowed by the security group rules">>
+<<newinfo "Requests on port 1234 are not allowed by the security group rules">>
 
 <<ask "How can we fix this?" "$aws" "AWS 3">>
 

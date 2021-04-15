@@ -1,9 +1,15 @@
 :: New information [widget]
-<<widget "newinfo">>
+<<widget "newinfo">><<nobr>>
 <<if !$knowledge.has($args[0])>>
-<div class="newinfo"><h2> you've found new information!! </h2><<run $knowledge.add($args[0])>><p>Adding <strong>"<<print $args[0]>>"</strong> to your "What you know" list.</p> </div>
+<div class="newinfo">
+    <h2> you've found new information!! </h2>
+    <<run $knowledge.add($args[0])>>
+    <p>
+    Adding <strong>"<<print $args[0]>>"</strong> to your "What you know" list.
+    </p>
+</div>
 <</if>>
-<</widget>>
+<</nobr>><</widget>>
 
 
 <<widget "init">>
@@ -14,13 +20,20 @@
 
 
 <!-- <<ask "Why do you think this happened?" "$variable" "Next page">> -->
-<<widget "ask">>
+<<widget "ask">><<nobr>>
 <<print $args[0]>> &nbsp; <<textbox $args[1] "" $args[2]>>
 <div style="display: flex">
-<<link "Submit" $args[2]>><</link>>
-<<link "I don't know" $args[2]>><</link>>
+    <<link "Submit" $args[2]>><</link>>
+    <<link "I don't know" $args[2]>><</link>>
 </div>
-<</widget>>
+<</nobr>><</widget>>
+
+<!-- <<you-said "Your reason for the SYN packets being retried:" $why_syn>> -->
+<<widget "you-said">><<nobr>>
+<p>
+<<if !$args[1] eq "">><<print $args[0]>> "<strong><<print $args[1]>></strong>".<</if>>
+</p>
+<</nobr>><</widget>>
 
 
 :: StoryCaption {"position":"845,465","size":"100,100"}
@@ -242,7 +255,7 @@ html[data-debug-view] .debug.hidden .debug {
   background-color: #ffedcb;
   border: 2px dashed orange;
   padding: 1em;
-  margin: auto;
+  margin: 2em auto;
   max-width: 30em;
 }
 
@@ -256,23 +269,24 @@ html[data-debug-view] .debug.hidden .debug {
 
 
 /* button */
-.passage a {
+.passage .link-internal, .passage .link-broken {
   border-radius: 1em;
   padding: .8em;
-  background-color: #68d;
   color: white;
   display: inline-block;
   margin: .5em;
 }
 
-.passage a.nobutton {
-  border-radius: 0em;
-  padding: 0;
-  background-color: transparent;
-  color: purple;
-  text-decoration: underline;
-  display: inline;
-  margin: 0;
+.passage .link-internal {
+  background-color: #68d;
+}
+
+.passage .link-visited {
+  background-color: #9bf;
+}
+
+.passage .link-broken {
+  background-color: red;
 }
 
 code {

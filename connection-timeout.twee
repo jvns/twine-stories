@@ -83,7 +83,7 @@ You go check your email to make sure it's working. You get distracted briefly by
 
 <p>After waiting for 2 minutes, you finally get this error message:</p>
 
-<pre>curl: (28) Failed to connect to localhost port 1234: Connection timed out </pre>
+<pre>curl: (28) Failed to connect to machine.corp.yourcompany.com port 1234: Connection timed out </pre>
 
 <p>Interesting, that's the same message as before.</p>
 

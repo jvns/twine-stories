@@ -377,7 +377,7 @@ What do you think this means? Have any of these rules ever been used?
 :: Iptables 4
 
 <p>
-Some of these rules have been used!  For example, let's look at this line from the output:
+Some of these rules have been used! iptables' output is pretty confusing at first, so let's look at this line from the output and break it down if you haven't looked at it before:
 </p>
 
 <p>
@@ -466,7 +466,7 @@ Wait... nothing has changed! Some of the counters still haven't been cleared. Wh
 <p>
 What's going on is that iptables has multiple "tables", and <code>sudo iptables
 -Z</code> actually only clears the counters for the default table (the <code>filter</code>
-table).
+table). This one isn't obvious at all -- I've gotten tripped up by this many times and I always forget about it.
 </p>
 
 <p>

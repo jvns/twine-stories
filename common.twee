@@ -23,7 +23,7 @@
 <<widget "ask">>
 <div style="margin-top: 3em;">
 <<print $args[0]>> &nbsp; <<textbox $args[1] "" $args[2]>>
-<div style="display: flex">
+<div style="display: flex; margin-top: .5em;">
     <<link "Submit" $args[2]>><</link>>
     <<link "I don't know" $args[2]>><</link>>
 </div>
@@ -47,6 +47,10 @@
 <</if>>
 </div>
 
+:: Story Javascript [script]
+
+Config.passages.nobr = true;
+Config.addVisitedLinkClass = true;
 
 :: Story Stylesheet [stylesheet]
 

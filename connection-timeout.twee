@@ -1,11 +1,6 @@
 :: StoryTitle
 The Case of the Connection Timeout
 
-:: Story Javascript [script]
-
-Config.passages.nobr = true;
-Config.addVisitedLinkClass = true;
-
 :: StoryData
 {
 	"ifid": "09DE9016-7D2F-4601-AC06-64F432507D8D",
@@ -126,7 +121,7 @@ Here's the tcpdump output you see:
 
 :: Try tcpdump 3
 <p>
-    <<if !$packets eq "">>You said the packets were: "<strong><<print $packets>></strong>".<</if>>
+<<you-said "You said the packets were:" $packets>>
 </p>
 <p>
     These packets are all SYN packets. A SYN packet is the first packet sent in any TCP connection. The way you can tell they're SYN packets is from the <code>Flags [S]</code> in this tcpdump line:

@@ -1,5 +1,5 @@
 :: New information [widget]
-<<widget "newinfo">><<nobr>>
+<<widget "newinfo">>
 <<if !$knowledge.has($args[0])>>
 <div class="newinfo">
     <h2> you've found new information!! </h2>
@@ -9,7 +9,7 @@
     </p>
 </div>
 <</if>>
-<</nobr>><</widget>>
+<</widget>>
 
 
 <<widget "init">>
@@ -20,20 +20,22 @@
 
 
 <!-- <<ask "Why do you think this happened?" "$variable" "Next page">> -->
-<<widget "ask">><<nobr>>
+<<widget "ask">>
+<div style="margin-top: 3em;">
 <<print $args[0]>> &nbsp; <<textbox $args[1] "" $args[2]>>
 <div style="display: flex">
     <<link "Submit" $args[2]>><</link>>
     <<link "I don't know" $args[2]>><</link>>
 </div>
-<</nobr>><</widget>>
+</div>
+<</widget>>
 
 <!-- <<you-said "Your reason for the SYN packets being retried:" $why_syn>> -->
-<<widget "you-said">><<nobr>>
+<<widget "you-said">>
 <p>
 <<if !$args[1] eq "">><<print $args[0]>> "<strong><<print $args[1]>></strong>".<</if>>
 </p>
-<</nobr>><</widget>>
+<</widget>>
 
 
 :: StoryCaption {"position":"845,465","size":"100,100"}
@@ -278,15 +280,22 @@ html[data-debug-view] .debug.hidden .debug {
 }
 
 .passage .link-internal {
-  background-color: #68d;
+  background-color: #57c;
 }
 
-.passage .link-visited {
-  background-color: #9bf;
+.passage .link-internal.link-visited {
+  background-color: #69e;
 }
 
 .passage .link-broken {
   background-color: red;
+}
+
+.nav {
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 code {

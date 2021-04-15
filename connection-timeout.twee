@@ -595,6 +595,9 @@ $ curl localhost:1234/status
 You get a reply instantly and everything looks good.
 </p>
 
+
+<<newinfo "The server is running on port 1234">>
+
 <div class="nav">
 [[Go back->SSH]]
 </div>

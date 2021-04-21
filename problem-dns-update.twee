@@ -799,8 +799,8 @@ Hopefully one of these options is what you typed in:
 </p>
 
 <div class="nav">
-[[Switch your nameserver to AWS's DNS server->solution 1]]
-[[Set the DNS records on the actual DNS server->solution 2]]
+[[Switch your nameserver to the AWS nameserver->solution 1]]
+[[Set the DNS records on the current nameserver (dns1.p01.nsone.net) ->solution 2]]
 </div>
 
 

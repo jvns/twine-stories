@@ -314,22 +314,8 @@ img {
     max-width: 100%;
 }
 
-/*
-body {
-  border: 2em solid purple;
-  width: calc(100% - 17.5em);
-  border-radius: 40px;
-  margin-left: 17.5em;
-  box-sizing: border-box;
-  min-height: 100vh;
+pre {
+    border: 1px solid #05b;
+    background-color: #f1f5f9;
+    padding: .5em;
 }
-
-
-#story {
-  /* margin-left: 20em; */
-  margin-left: 2em;
-}
-
-
-*/
-

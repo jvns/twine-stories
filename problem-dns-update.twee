@@ -762,8 +762,10 @@ Name Server: <strong>DNS4.P01.NSONE.NET</strong>
 
 <<newinfo "Your domain's authoritative nameserver is dns1.p01.nsone.net (plus a few others)">>
 
+<div class="nav">
 [[Figure out what the problem is->problem]]
 [[Go back->Landing]]
+</div>
 
 :: problem
 

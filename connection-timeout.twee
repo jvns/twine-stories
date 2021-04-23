@@ -202,7 +202,7 @@ security groups rule definition for that instance, and it looks like this. The p
 Do you think this is the cause of your problem?
 </p>
 
-[[Yes->AWS 2]] [[No->AWS 2]]
+<div class="nav">[[Yes->AWS 2]] [[No->AWS 2]]</div>
 
 :: AWS 2
 
@@ -238,6 +238,8 @@ traffic on that port, and you add a new rule to allow traffic on port 1234.
 </div>
 
 :: Epilogue
+
+<h1 class="title">Epilogue</h1>
 
 <p>
 Connection timeouts aren't always caused by firewall problems, but it's a very

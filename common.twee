@@ -21,9 +21,9 @@
 
 <!-- <<ask "Why do you think this happened?" "$variable" "Next page">> -->
 <<widget "ask">>
-<div style="margin-top: 3em;">
-<<print $args[0]>> &nbsp; <<textbox $args[1] "" $args[2]>>
-<div style="display: flex; margin-top: .5em;">
+<div style="margin-top: 3em;" class="ask">
+<span class="ask-question"><<print $args[0]>></span> &nbsp; <<textbox $args[1] "" $args[2]>>
+<div class="nav">
     <<link "Submit" $args[2]>><</link>>
     <<link "I don't know" $args[2]>><</link>>
 </div>
@@ -300,7 +300,7 @@ html[data-debug-view] .debug.hidden .debug {
 }
 
 .nav {
-  margin-top: 3em;
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -318,4 +318,209 @@ pre {
     border: 1px solid #05b;
     background-color: #f1f5f9;
     padding: .5em;
+}
+
+/* css styling */
+/* todo: clean this up */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --pink: #FEA0C2;
+    --pink-light: #FFCFE4;
+    --red: #F91A55;
+    --orange: rgb(222, 117, 31);
+    --orange-light: #F9E6D8;
+    --yellow: #FCD947;
+    --yellow-light: #F8E69C;
+    --yellow-dark: #E8AB72;
+    --green: #009355;
+    --green-light: #23BC7C;
+    --green-dark: #72E8A1;
+    --purple-light: #ffe2ff;
+    --sticky-note-pink: #ffddea;
+    --sticky-note-yellow: #ffd;
+    --sticky-note-green: #c7fff0;
+    --sticky-note-blue: #c3faff;
+    --sticky-note-purple: #ffe2ff;
+    --answer-purple: #f8f1f8;
+    --gray: rgb(220, 220, 220);
+    --border-width: 2px;
+    --sidebar-width: 22em;
+}
+
+body {
+  background-color: #DFDBE5;
+background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+div.passage {
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 1em;
+  background: whiteSmoke;
+  position: relative;
+    box-shadow: 0 2px 2px rgba(0,0,0,.25);
+}
+
+#passage-epilogue {
+  background: var(--yellow-light);
+  
+}
+
+div.nav { 
+  bottom: 0;
+  display: block;
+  margin-bottom: -3em;
+}
+
+#story {
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 1em
+}
+
+a.link-internal.link-visited {
+  background: #47698e;
+}
+
+a.link-internal.link-visited::after {
+  content: " ✓"
+}
+
+ pre {
+  white-space: initial;
+  background: gray;
+  background-color: #3D3C3C;
+  color: white;
+  border-top: 20px solid gray;
+  position: relative;
+  overflow: visible;
+}
+
+pre::before {
+  content: "terminal";
+  font-family: inherit;
+  position: absolute;
+  top: -1.5em;
+  left: 0;
+  z-index: 20;
+}
+
+#story-caption li {
+  /* animation: 5s new-item ease-in 1; */
+}
+/* 
+@keyframes new-item {
+  0% {
+    background: #ffedcb;
+  }
+  75% {
+    background: #ffedcb;
+  }
+  100% {
+    background: transparent;
+  }
+} */
+
+/* inputs */
+
+.ask-question {
+  font-weight: bold
+}
+
+input.macro-textbox {
+  border-radius: 4px;
+  background: white;
+  border: 2px solid rgba(0,0,0,.25);
+}
+
+input.macro-textbox:focus {
+  border-color: #57c;
+}
+
+.ask {
+  border-top: 2px solid black;
+  padding-top: 2em;
+  margin: 0 -1em 0;
+  padding: 1em 1em 0 1em;
+}
+
+/* card effect */
+
+#story-caption ol {
+  padding-left: 0;
+}
+
+#story-caption li {
+  background: white;
+  margin: 0 0 -6px;
+  padding: .5em .5em .75em;
+  list-style-type: none;
+  border-radius: 6px;
+  border: 2px solid black;
+  box-shadow: 0 2px 2px rgba(0,0,0,.25);
+}
+
+#story-caption li:nth-of-type(5n+0)  {
+    background: var(--sticky-note-pink);
+    transform: rotate(1deg);
+}
+
+#story-caption li:nth-of-type(5n+1) {
+    background: var(--sticky-note-yellow);
+        transform: rotate(-1deg);
+
+}
+
+#story-caption li:nth-of-type(5n+2) {
+    background: var(--sticky-note-green);
+        transform: rotate(1deg);
+
+}
+
+#story-caption li:nth-of-type(5n+3) {
+    background: var(--sticky-note-blue);
+        transform: rotate(-1.5deg);
+
+}
+
+#story-caption li:nth-of-type(5n+4) {
+    background: var(--sticky-note-purple);
+        transform: rotate(1.5deg);
+
+}
+
+h1.title {
+  font-family: "Playfair Display", serif;
+  font-size: 60px;
+  margin: 0;
+  background: black;
+  background-size: contain;
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.newinfo {
+  max-width: 100%;
+  text-align: center;
+}
+
+.newinfo p strong {
+  display: inline-block;
+  padding: .5em;
+  border-radius: 6px;
+  border: 2px solid black;
+  box-shadow: 0 2px 2px rgba(0,0,0,.25);
+  background: white;
+}
+
+#ui-bar {
+  border-right: 2px solid black;
+  box-shadow: 0 2px 2px rgba(0,0,0,.25);
+
+}
+
+#story-title {
+    font-family: "Playfair Display", serif;
 }

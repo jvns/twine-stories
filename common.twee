@@ -30,6 +30,18 @@
 </div>
 <</widget>>
 
+<<widget "ask-area">>
+<div style="margin-top: 3em;">
+<<print $args[0]>> &nbsp; <<textarea $args[1] "" $args[2]>>
+<div style="display: flex; margin-top: .5em;">
+    <<link "Submit" $args[2]>><</link>>
+    <<link "I don't know" $args[2]>><</link>>
+</div>
+</div>
+<</widget>>
+
+
+
 <!-- <<you-said "Your reason for the SYN packets being retried:" $why_syn>> -->
 <<widget "you-said">>
 <p>
@@ -319,3 +331,76 @@ pre {
     background-color: #f1f5f9;
     padding: .5em;
 }
+
+/* card effect */
+
+:root {
+    --pink: #FEA0C2;
+    --pink-light: #FFCFE4;
+    --red: #F91A55;
+    --orange: rgb(222, 117, 31);
+    --orange-light: #F9E6D8;
+    --yellow: #FCD947;
+    --yellow-light: #F8E69C;
+    --yellow-dark: #E8AB72;
+    --green: #009355;
+    --green-light: #23BC7C;
+    --green-dark: #72E8A1;
+    --purple-light: #ffe2ff;
+    --sticky-note-pink: #ffddea;
+    --sticky-note-yellow: #ffd;
+    --sticky-note-green: #c7fff0;
+    --sticky-note-blue: #c3faff;
+    --sticky-note-purple: #ffe2ff;
+    --answer-purple: #f8f1f8;
+    --gray: rgb(220, 220, 220);
+    --border-width: 2px;
+    --sidebar-width: 22em;
+}
+
+
+
+#story-caption ol {
+  padding-left: 0;
+}
+
+#story-caption li {
+  background: white;
+  margin: 0 0 -6px;
+  padding: .5em .5em .75em;
+  list-style-type: none;
+  border-radius: 6px;
+  border: 2px solid black;
+  box-shadow: 0 2px 2px rgba(0,0,0,.25);
+}
+
+#story-caption li:nth-of-type(5n+0)  {
+    background: var(--sticky-note-pink);
+    transform: rotate(1deg);
+}
+
+#story-caption li:nth-of-type(5n+1) {
+    background: var(--sticky-note-yellow);
+        transform: rotate(-1deg);
+
+}
+
+#story-caption li:nth-of-type(5n+2) {
+    background: var(--sticky-note-green);
+        transform: rotate(1deg);
+
+}
+
+#story-caption li:nth-of-type(5n+3) {
+    background: var(--sticky-note-blue);
+        transform: rotate(-1.5deg);
+
+}
+
+#story-caption li:nth-of-type(5n+4) {
+    background: var(--sticky-note-purple);
+        transform: rotate(1.5deg);
+
+}
+
+

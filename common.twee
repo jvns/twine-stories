@@ -59,6 +59,10 @@
 <</if>>
 </div>
 
+<div style="margin-top: 4em">
+<a href="/"><< Back to all puzzles</a>
+</div>
+
 :: Story Javascript [script]
 
 Config.passages.nobr = true;

@@ -1231,7 +1231,7 @@ CPU usage is basically at 0%. It's not happening because the server is overloade
 :: strace server
 
 <p>
-You're on the server, and you want to 
+You decide to strace the server process.
 </p>
 
 

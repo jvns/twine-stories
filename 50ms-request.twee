@@ -152,6 +152,10 @@ Time elapsed: 50 milliseconds
 
 :: curl
 
+<p>
+You decide to use curl to make the same POST request that <code>slow.js</code> is making, to see if you get a different result.
+</p>
+
 <<ask "What command line arguments do you need to pass to curl to make a POST request?" "$curl_cmd" "curl 2">>
 
 :: curl 2

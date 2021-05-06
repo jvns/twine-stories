@@ -99,7 +99,7 @@ uploadFile("test.txt") <br>
 :: Client
 
 <p>
-You SSH to the server that's making the slow requests to do some more
+You SSH to the client machine that's making the slow requests to do some more
 investigation. You copy over the <code>slow.js</code> script you wrote so that
 you can reproduce it easily.
 </p>

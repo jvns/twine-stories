@@ -35,11 +35,11 @@ Click "Start" to get started.
 :: Landing
 
 <p>
-You're moving your website (https://examplecat.com) to a new web host -- you
-want to switch from using a static site hosting tool to your own server, which
-you've set up with nginx. You vaguely remember that you were using AWS to
-manage your DNS, so you go to the AWS web console, and update the IP address
-from `157.245.84.7` to `12.13.14.15`.
+You're moving your website (<a href="https://examplecat.com">examplecat.com</a>)
+to a new web host -- you want to switch from using a static site hosting tool to
+your own server, which you've set up with nginx. You vaguely remember that you
+were using AWS to manage your DNS, so you go to the AWS web console, and update
+the IP address from `157.245.84.7` to `12.13.14.15`.
 </p>
 
 <p>

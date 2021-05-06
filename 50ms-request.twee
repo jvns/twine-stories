@@ -106,6 +106,7 @@ you can reproduce it easily.
 
 <div class="nav">
 [[Run slow.js -> Run slow.js]]
+[[Use curl -> curl]]
 [[Use ping -> ping]]
 [[Use strace -> strace]]
 [[Use tcpdump -> tcpdump]]
@@ -144,6 +145,49 @@ Time elapsed: 50 milliseconds
 </pre>
 
 <<newinfo "The HTTP request takes about 50ms on average.">>
+
+<div class="nav">
+[[Go back -> Client]]
+</div>
+
+:: curl
+
+<<ask "What command line arguments do you need to pass to curl to make a POST request?" "$curl_cmd" "curl 2">>
+
+:: curl 2
+
+<<you-said "The curl command you want to run:" $curl_cmd>>
+
+<p>
+This game only knows one option, so you make a POST request with:
+</p>
+
+<pre>
+$ time curl -d 'buy some milk' http://mysterybox:8000 <br>
+a <br>
+real	0m0.018s <br>
+user	0m0.007s <br>
+sys	0m0.010s
+</pre>
+
+
+<p>
+What do you think this means? Did using curl give us a different result?
+</p>
+
+<div class="yesno">
+[[Yes->curl 3]]
+[[No->curl 3]]
+</div>
+
+:: curl 3
+
+<p>
+The curl process took 18ms to run, which is faster than 50ms! The total time to
+make the request was less than that, because there's some overhead to starting
+the curl process.
+</p>
+<<newinfo "curl is much faster: it takes less than 18ms to make the request">>
 
 <div class="nav">
 [[Go back -> Client]]

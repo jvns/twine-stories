@@ -1293,7 +1293,7 @@ You decide to strace the server process.
 
 
 <p>
-To strace the server, first you need to find its PID. You know that the program is called <code>server.py</code>.
+This game only knows one way to do it so here's what we're going to do. To strace the server, first you need to find its PID. You know that the program is called <code>server.py</code>.
 </p>
 
 <<ask "What command can you run to find the server's PID?" "$server_pid_cmd" "strace server 3">>

@@ -1148,7 +1148,7 @@ This is going to be a pretty big leap of logic if you haven't seen it before.
 The Linux kernel's TCP implementation has a feature called <a
 href="https://en.wikipedia.org/wiki/TCP_delayed_acknowledgment">delayed
 acknowledgement</a> or "delayed ACKs". 
-Basically the idea behind delayed ACKs is to not ACK every packet as an optimization. <br>So instead of this:
+Basically the idea behind delayed ACKs is to save time by not ACKing every packet. <br>So instead of this:
 </p>
 
 <p>

@@ -118,7 +118,9 @@ examplecat.com.		43200	IN	NS	ns-705.awsdns-24.net. <br>
 What do you think? Does this look ok? As a reminder, `157.245.84.7` is the old IP and `12.13.14.15` is the new IP.
 </p>
 
+<div class="nav">
 [[Yes->awsdns 3]] [[No->awsdns 3]]
+</div>
 
 ::awsdns 3
 
@@ -314,8 +316,9 @@ This whole digression isn't really that relevant to debugging the current proble
 
 <<newinfo "nginx is configured correctly">>
 
-
+<div class="nav">
 [[Undo the changes to your /etc/hosts file -> undo etc hosts]]
+</div>
 
 :: undo etc hosts
 
@@ -597,8 +600,10 @@ examplecat.com.		172800	IN	NS	<strong>dns4.p01.nsone.net.</strong>
 
 <<newinfo "Your domain's authoritative nameserver is dns1.p01.nsone.net (plus a few others)">>
 
+<div class="nav">
 [[Figure out what the problem is->problem]]
 [[Go back->Landing]]
+</div>
 
 :: Try whois
 

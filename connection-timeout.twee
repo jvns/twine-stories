@@ -239,7 +239,7 @@ traffic on that port, and you add a new rule to allow traffic on port 1234.
 
 :: Epilogue
 
-<h1 class="title">Epilogue</h1>
+<h1 class="title">Epilogue 🎉</h1>
 
 <p>
 Connection timeouts aren't always caused by firewall problems, but it's a very
@@ -369,7 +369,9 @@ COMMIT <br>
 What do you think this means? Have any of these rules ever been used?
 </p>
 
+<div class="nav">
 [[Yes->Iptables 4]] [[No->Iptables 4]]
+</div>
 
 :: Iptables 4
 
@@ -406,7 +408,9 @@ Here's what we're going to do. The idea is that if we reset all of iptables' cou
 
 <p> Let's get started on that: </p>
 
+<div class="nav">
 [[Reset the counters->Iptables 6]]
+</div>
 
 :: Iptables 6
 
@@ -514,7 +518,9 @@ COMMIT <br>
 
 Great. Everything is cleared. Now let's make a request to the service and see if it triggers any of those counters.
 
+<div class="nav">
 [[Make a request->Iptables 8]]
+</div>
 
 :: Iptables 8
 
@@ -562,7 +568,9 @@ COMMIT <br>
 
 What does this mean? Is the problem caused by iptables?
 
+<div class="nav">
 [[Yes->Iptables final]] [[No->Iptables final]]
+</div>
 
 :: Iptables final
 

@@ -14,6 +14,7 @@ The Case of the Slow Websites
 
 <<init>>
 
+<<type 30ms>>\
 <p>
 Hello! This is a mystery where your goal is to solve a debugging problem!  You'll collect clues, interpret evidence, and ultimately solve the Case of the Slow Websites!
 </p>
@@ -26,11 +27,12 @@ In the sidebar, you'll notice a "What you know" list. As you collect more clues,
 Click "Start" to get started.
 </p>
 
-
+<div class="nav">
 [[Start->Landing]]
+</div>
+<</type>>
 
 :: Landing
-
 <p>
 You wake up one morning, eat some breakfast, and sit down at your computer. You open your email in your web browser.
 </p>
@@ -49,7 +51,6 @@ Pick an option:
 [[Look at the network tab->Network tab 1]]
 </div>
 
-
 :: Speed test {"position":"697,225","size":"100,100"}
 <p>
 You Google "speed test" and click on the "Run speed test" button. Your download speeds are about 30Mb/s and your upload is 10Mb/s.
@@ -67,7 +68,6 @@ What do you think this means? Is your internet speed the problem?
 [[I don't know -> Speed test info][$fast_guess to "idk"]]
 </div>
 
-
 :: Speed test info
 
 <p>
@@ -76,7 +76,9 @@ What do you think this means? Is your internet speed the problem?
 
 <<newinfo "Your internet is fast">>
 
+<div class="nav">
 [[Go back->Landing]]
+</div>
 
 :: Network tab 1 {"position":"691,344","size":"100,100"}
 <p>
@@ -228,7 +230,9 @@ neopets.com.		3600	IN	A	23.96.35.235 <br>
 That's weird, you think -- it says <code>Query time: 23 msec</code> in the output, but you know your other DNS query was taking 5 seconds.
 </p>
 
+<div class="nav">
 [[Go back->DNS diagnosis]]
+</div>
 
 :: Tcpdump
 <p>

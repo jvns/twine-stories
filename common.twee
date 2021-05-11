@@ -1,3 +1,9 @@
+::PassageHeader
+<div class="passageheader">
+  <button id="history-backward" tabindex="0" title="Go backward within the game history" aria-label="Go backward within the game history" type="button"></button>
+  <button id="history-forward" tabindex="0" title="Go forward within the game history" aria-label="Go forward within the game history" type="button" disabled="" aria-disabled="true"></button>
+</div>
+
 :: New information [widget]
 <<widget "newinfo">>
 <<if !$knowledge.has($args[0])>>
@@ -5,7 +11,7 @@
     <h2> you've found new information!! </h2>
     <<run $knowledge.add($args[0])>>
     <p>
-    Adding <strong>"<<print $args[0]>>"</strong> to your "What you know" list.
+    Adding <strong><<print $args[0]>></strong> to your "What you know" list.
     </p>
 </div>
 <</if>>
@@ -259,7 +265,7 @@ html[data-debug-view] .debug.hidden .debug {
 /* "new information" box */
 .newinfo {
   background-color: #ffedcb;
-  border: 2px dashed orange;
+  /* border: 2px dashed orange; */
   padding: 1em;
   margin: 2em auto;
   max-width: 30em;
@@ -277,13 +283,13 @@ html[data-debug-view] .debug.hidden .debug {
 /* button */
 .passage .link-internal, .passage .link-broken {
   border-radius: 1em;
-  padding: .8em;
+  padding: 0 1ch;
   color: white;
-  display: inline-block;
+  display: block;
   margin: .5em;
 }
 
-.passage .link-internal {
+/* .passage .link-internal {
   background-color: #57c;
 }
 
@@ -297,7 +303,7 @@ html[data-debug-view] .debug.hidden .debug {
 
 .passage .link-broken {
   background-color: red;
-}
+} */
 
 .nav {
   margin-top: 1em;
@@ -307,7 +313,11 @@ html[data-debug-view] .debug.hidden .debug {
 }
 
 code {
-    color: #22c;
+    background: khaki;
+    color: brown;
+    padding: 0.1em .25em;
+    border-radius: 6px;
+    display: inline;
 }
 
 img {
@@ -346,6 +356,7 @@ pre {
     --gray: rgb(220, 220, 220);
     --border-width: 2px;
     --sidebar-width: 22em;
+    --box-shadow: inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;
 }
 
 body {
@@ -367,21 +378,15 @@ div.passage {
   
 }
 
-div.nav { 
-  bottom: 0;
-  display: block;
-  margin-bottom: -3em;
-}
-
 #story {
   min-height: 100vh;
   margin: 0 auto;
   padding: 1em
 }
 
-a.link-internal.link-visited {
+/* a.link-internal.link-visited {
   background: #47698e;
-}
+} */
 
 a.link-internal.link-visited::after {
   content: " ✓"
@@ -457,7 +462,7 @@ input.macro-textbox:focus {
   padding: .5em .5em .75em;
   list-style-type: none;
   border-radius: 6px;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   box-shadow: 0 2px 2px rgba(0,0,0,.25);
 }
 
@@ -491,7 +496,6 @@ input.macro-textbox:focus {
 }
 
 h1.title {
-  font-family: "Playfair Display", serif;
   font-size: 60px;
   margin: 0;
   background: black;
@@ -514,13 +518,256 @@ h1.title {
   box-shadow: 0 2px 2px rgba(0,0,0,.25);
   background: white;
 }
+#story-title {
+}
+
+
+body {
+  font-family: "Roboto Mono";
+  background-image: url(https://wallpaperaccess.com/full/755385.jpg);
+  background-size: cover;
+}
+
+div.passage {
+  background: #f0f0f0; /*rgba(255,255,255,.9);*/
+  color: #272822;
+  position: relative;
+  margin-top: 3em;
+  border: none;
+  min-height: 10em;
+  border-radius: 0;
+  box-shadow: inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;
+  padding-bottom: 3rem;
+
+}
+
+div.passage::before, #ui-bar::before {
+  content: " ";
+  font-family: inherit;
+  position: absolute;
+  top: -1em;
+  left: 0;
+  height: 2em;
+  z-index: 20;
+  background: #ec88e1;
+  background: linear-gradient( to right, #ec88e1,#6c66ac);
+  width: 100%;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+#ui-bar::before {
+  top: 0;
+}
 
 #ui-bar {
   border-right: 2px solid black;
   box-shadow: 0 2px 2px rgba(0,0,0,.25);
-
 }
 
-#story-title {
-    font-family: "Playfair Display", serif;
+#ui-bar-tray {
+  z-index: 99;
+}
+
+
+div.passage::after {
+  /* content: "x + -";
+  position: absolute;
+  top: -1.5em;
+  left: 1em;
+  z-index: 26; */
+}
+
+a.link-internal {
+  background: none;
+  color: inherit;
+  text-decoration: underline;
+  font-weight: bold;
+  color: white;
+  /* background: rgba(0,0,0,.075); */
+  padding: 0 1ch 0 2ch;
+  border-radius: 0;
+  text-decoration: none;
+  position: relative;
+  display: block;
+}
+a.link-internal::before {
+  content: "";
+  position: absolute;
+  left: 0ch;
+}
+a.link-internal:hover::before {
+  content: "> "
+}
+a.link-internal::after {
+  content: ""
+}
+a.link-internal.link-visited::after {
+  content: " [✓]";
+}
+
+div div pre {
+  border-top: 0;
+  border-radius: 8px;
+  box-shadow: 0 0 2px rgba(0,0,0,.25);
+}
+
+div div pre:before {
+  content: " ";
+  display: none;
+}
+
+.nav {
+  background: #9f37b4;
+  color: white;
+  padding: 1ch 0;
+  position: absolute;
+  top: calc(100% - 60px);
+  right: 20px;
+  box-shadow: inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;
+  height: auto;
+  bottom: inherit;
+  margin-bottom: inherit;
+}
+
+#ui-bar {
+  margin: 1em;
+  border-radius: 6px;
+  /* overflow: hidden; */
+}
+
+#ui-bar-history {
+  /* background: linear-gradient( to right, #ec88e1,#6c66ac);
+  margin-top: -4px; */
+  z-index: 99;
+}
+
+#ui-bar-body {
+  
+}
+
+/* border effect */
+#story-caption li, .newinfo p strong {
+  position: relative;
+  border: none;
+  box-shadow: inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;
+  border-radius: 0;
+}
+
+/* sticky notes */
+
+#story-caption li, .newinfo {
+  margin-bottom: .5em;
+  border-radius: 0;
+  min-height: 4em;
+  border-top-right-radius: 20px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,.25); 
+  color: black;
+}
+
+#story-caption li::before, .newinfo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 16px 16px 0;
+  border-style: solid;
+  border-color: #eee #eee #658E15 #658E15;
+  background: #658E15;
+  display: block;
+  width: 0;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+}
+
+
+.newinfo {
+  position: relative;
+  background: var(--sticky-note-yellow);
+}
+
+.newinfo p strong {
+  color: black;
+  background: none;
+  box-shadow: none;
+}
+
+/* epilogue */
+
+#passage-start, #passage-epilogue {
+  background: rebeccapurple;
+  color: white;
+}
+
+#passage-start h1.title, #passage-epilogue h1.title {
+  background-color: white;
+}
+
+#passage-start p:first-of-type, #passage-epilogue p:first-of-type {
+  background: whiteSmoke;
+  color: black;
+  padding: 1em 2ch;  
+  box-shadow: var(--box-shadow);
+  margin-left: 100px;
+  position: relative;
+  display: block;
+  margin-bottom: 2em;
+  min-height: 80px;
+}
+
+#passage-start p:first-of-type::before, #passage-epilogue p:first-of-type::before {
+   content: " ";
+   position: absolute;
+   bottom: 0;
+   left: -100px;
+   width: 80px;
+   height: 80px;
+   background: white;
+   border-radius: 50%;
+   background-image: url();
+}
+
+#passage-start p:first-of-type::after, #passage-epilogue p:first-of-type::after {
+  content: " ";
+  position: absolute;
+  left: -15px;
+  bottom: 30px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 17px 10px 0;
+  border-color: transparent whiteSmoke transparent transparent;   
+ }
+
+/* nav  */
+button, .button {
+  font-family: tme-fa-icons;
+font-style: normal;
+font-weight: 400;
+font-variant: normal;
+text-transform: none;
+line-height: 1;
+speak: none;
+background: none;
+border: none;
+color: white;
+}
+button[disabled],.button[disabled] {
+  opacity: .5;
+}
+button:hover, .button:hover {
+  background: rgba(255,255,255,.25);
+  
+}
+
+div.passageheader {
+  position: absolute;
+  top: -1em;
+  left: 1em;
+  z-index: 99;
+}
+
+#story {
+  
 }

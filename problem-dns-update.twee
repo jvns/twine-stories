@@ -43,7 +43,7 @@ the IP address from `157.245.84.7` to `12.13.14.15`.
 </p>
 
 <p>
-You remember that DNS updates can a few minutes to propagate, so you go make
+You remember that DNS updates can take a few minutes to propagate, so you go make
 yourself some tea and come back 10 minutes later.
 </p>
 
@@ -481,7 +481,7 @@ examplecat.com.		<strong>20</strong>	IN	A	157.245.84.7
 <p>
 You run <code>dig +trace examplecat.com</code>. Here's what you see. As a
 reminder, `157.245.84.7` is the old IP, `12.13.14.15` is the new IP, and
-ypu updated your DNS using AWS's nameservers.
+you updated your DNS using AWS's nameservers.
 </p>
 
 <p>

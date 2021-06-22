@@ -188,11 +188,11 @@ Hopefully one of these two options is what you typed in:
 :: curl cmd
 
 <p>
-You run <code> curl 104.131.75.218</code>
+You run <code> curl 12.13.14.15</code>
 </p>
 
 <pre>
-curl 104.131.75.218 <br>
+curl 12.13.14.15 <br>
 &lt;!DOCTYPE html&gt;<br>
 &lt;html&gt;<br>
 &lt;head&gt;<br>
@@ -221,11 +221,11 @@ Looks like that's the same nginx page you saw before in your browser. Hmm.
 :: curl cmd host
 
 <p>
-You run <code> curl 104.131.75.218 -H "Host: examplecat.com"</code>
+You run <code> curl 12.13.14.15 -H "Host: examplecat.com"</code>
 </p>
 
 <pre>
-$ curl 104.131.75.218 -H "Host: examplecat.com"
+$ curl 12.13.14.15 -H "Host: examplecat.com"
 &lt;!doctype html&gt; <br>
 &lt;html&gt; <br>
 &lt;head> <br>

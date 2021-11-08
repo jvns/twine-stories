@@ -1,0 +1,52 @@
+things duretti tried:
+
+- pinging the container
+
+
+things duretti did not know about:
+- docker-compose exec backend /bin/bash
+
+
+You're trying to set up Redis inside Docker Compose on your Mac. (maybe you're working from
+your hammock)
+
+things you could try:
+
+1. Look at your docker-compose.yaml
+2. check if Redis is running
+----- docker-compose logs redis
+3. ping the container
+----- try 'ping redis', it doesn't work
+----- google 'ping docker container on Mac', you can't do that
+----- oh well
+4. open a terminal inside the Python container
+------ use the redis CLI to connect to Redis
+------- oops it's not installed
+------ redis-cli -h localhost -p 36379 keys "*" (fails)
+------ redis-cli -h localhost -p 6379 keys "*" (fails)
+------ redis-cli -h redis -p 36379 keys "*" (fails)
+------ redis-cli -h redis -p 6379 keys "*" (works)
+5. use the redis CLI to connect to Redis
+------ redis-cli -h localhost -p 36379 keys "*" (works)
+------ redis-cli -h localhost -p 6379 keys "*" (fails)
+------ redis-cli -h redis -p 36379 keys "*" (fails)
+------ redis-cli -h redis -p 6379 keys "*" (fails)
+
+
+6. talk about network namespaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+things you could learn:
+
+1. you can get a terminal inside the container

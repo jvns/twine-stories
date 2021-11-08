@@ -1,0 +1,14 @@
+version: "3"
+services:
+  backend:
+    build: '.'
+      #links:
+      #  - redis:redis
+    ports:
+      - "3000:3000"
+  redis:
+    image: redis
+    container_name: cache
+    ports:
+      - 36379:6379
+    restart: always

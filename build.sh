@@ -1,5 +1,10 @@
 echo 'building...'
-./bin/tweego slow-website.twee common.twee -o slow-website.html
-./bin/tweego connection-timeout.twee common.twee -o connection-timeout.html
-./bin/tweego problem-dns-update.twee common.twee -o problem-dns-update.html
-./bin/tweego 50ms-request.twee common.twee -o 50ms-request.html
+mkdir -p debug
+
+for i in failed-decryption slow-website problem-dns-update 50ms-request docker-connection
+do
+    ./bin/tweego common.twee $i.twee -o $i.html
+    python3 dotify.py $i.twee | dot -Tsvg > debug/$i.svg
+done
+
+dot -Tsvg code/failed-decryption/story.dot > code/failed-decryption/story.svg

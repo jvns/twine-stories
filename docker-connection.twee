@@ -1,0 +1,52 @@
+:: StoryTitle
+The Case of the Failed Docker Connection
+
+:: StoryData
+{
+	"ifid": "01A7E9EF-B6EB-4372-A7FC-68EF8AAAC0E9",
+	"format": "SugarCube",
+	"format-version": "2.30.0",
+	"start": "Start",
+	"zoom": 1
+}
+
+:: Start
+
+<<init>>
+
+<p>
+Hello! This is a mystery where your goal is to solve a debugging problem!  You'll collect clues, interpret evidence, and ultimately solve the Case of the Slow Websites!
+</p>
+
+<p>
+In the sidebar, you'll notice a "What you know" list. As you collect more clues, the list will update with what you've learned.
+</p>
+
+<p>
+Click "Start" to get started.
+</p>
+
+
+[[Start->Landing]]
+
+:: Landing
+
+<p>
+You're working on a Python web service, and you decide you need a local cache
+for some data. You decide to use Redis, and so you set up Redis on your
+    computer with Docker Compose.
+</p>
+
+<p>
+But when you try to connect to Redis, you get this error:
+</p>
+
+<pre>
+backend_1  | redis.exceptions.ConnectionError: Error 99 connecting to localhost:36379. Cannot assign requested address.
+</pre>
+
+<div class="nav">
+[[asdf -> asdf]]
+[[Try a speed test->Speed test]]
+</div>
+

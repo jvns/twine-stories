@@ -1,12 +1,9 @@
 version: "3"
 services:
   backend:
-    # use dockerfile
     build: '.'
     links:
       - redis:redis
-    environment:
-      REDIS_URL: redis://redis:36379
     ports:
       - "3000:3000"
   redis:
@@ -15,5 +12,3 @@ services:
     ports:
       - 36379:6379
     restart: always
-volumes:
-  database-data:

@@ -208,3 +208,38 @@ Next, we need to figure out why Redis isn't running on  <code>localhost:36379</c
 [[Read docker-compose.yaml -> docker-compose yaml]]
 [[Ping the container -> ping container]]
 </div>
+
+:: check redis running
+
+:: docker compose yaml
+
+<html>
+<pre>
+version: "3"
+services:
+  backend:
+    build: '.'
+    links:
+      - redis:redis
+    ports:
+      - "3000:3000"
+  redis:
+    image: redis
+    container_name: cache
+    ports:
+      - 36379:6379
+    restart: always
+volumes:
+  database-data:
+</pre>
+</html>
+
+:: ping container
+
+You try to ping the container to see if it's up, but can't figure out how to do
+it. After some quick Googling, it looks like you can't ping a Docker container
+on Mac.
+
+<div class="nav">
+[[Go back -> Python program]]
+</div>

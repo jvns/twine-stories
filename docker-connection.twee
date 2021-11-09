@@ -211,28 +211,224 @@ Next, we need to figure out why Redis isn't running on  <code>localhost:36379</c
 
 :: check redis running
 
-:: docker compose yaml
+You decide to check if Redis is running.
+
+<<ask "How can you find out if Redis is running?" "$redis" "redis running 2">>
+
+:: redis running 2
+
+<<you-said "You said:" $redis>>
+
+This game isn't very smart, so it only knows about 2 options. Hopefully one of these is what you said:
+
+<div class="nav">
+[[use the Redis CLI -> redis-cli]]
+[[use telnet -> telnet]]
+[[look at the logs -> look at logs]]
+</div>
+
+:: look at logs
+
+You run <code>docker-compose logs redis</code> to look at the logs. Here's what you see:
 
 <html>
 <pre>
-version: "3"
-services:
-  backend:
-    build: '.'
-    links:
-      - redis:redis
-    ports:
-      - "3000:3000"
-  redis:
-    image: redis
-    container_name: cache
-    ports:
-      - 36379:6379
-    restart: always
-volumes:
-  database-data:
+Attaching to cache
+08 Nov 2021 20:27:21.946 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+08 Nov 2021 20:27:21.946 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+08 Nov 2021 20:27:21.946 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+08 Nov 2021 20:27:21.946 * monotonic clock: POSIX clock_gettime
+08 Nov 2021 20:27:21.946 * Running mode=standalone, port=6379.
+08 Nov 2021 20:27:21.947 # Server initialized
+08 Nov 2021 20:27:21.947 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+08 Nov 2021 20:27:21.947 * Ready to accept connections
+gnal-handler (1636403244) Received SIGTERM scheduling shutdown...
+08 Nov 2021 20:27:24.355 # User requested shutdown...
+08 Nov 2021 20:27:24.355 * Saving the final RDB snapshot before exiting.
+08 Nov 2021 20:27:24.356 * DB saved on disk
+08 Nov 2021 20:27:24.356 # Redis is now ready to exit, bye bye...
+08 Nov 2021 20:27:27.078 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+08 Nov 2021 20:27:27.079 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+08 Nov 2021 20:27:27.079 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+08 Nov 2021 20:27:27.079 * monotonic clock: POSIX clock_gettime
+08 Nov 2021 20:27:27.079 * Running mode=standalone, port=6379.
+08 Nov 2021 20:27:27.080 # Server initialized
+08 Nov 2021 20:27:27.080 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+08 Nov 2021 20:27:27.080 * Loading RDB produced by version 6.2.6
+08 Nov 2021 20:27:27.080 * RDB age 3 seconds
+08 Nov 2021 20:27:27.080 * RDB memory usage when created 0.77 Mb
+08 Nov 2021 20:27:27.080 # Done loading RDB, keys loaded: 0, keys expired: 0.
+08 Nov 2021 20:27:27.080 * DB loaded from disk: 0.000 seconds
+08 Nov 2021 20:27:27.080 * Ready to accept connections
+gnal-handler (1636403286) Received SIGTERM scheduling shutdown...
+08 Nov 2021 20:28:06.179 # User requested shutdown...
+08 Nov 2021 20:28:06.179 * Saving the final RDB snapshot before exiting.
+08 Nov 2021 20:28:06.184 * DB saved on disk
+08 Nov 2021 20:28:06.184 # Redis is now ready to exit, bye bye...
+08 Nov 2021 20:28:08.294 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+08 Nov 2021 20:28:08.294 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+08 Nov 2021 20:28:08.294 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+08 Nov 2021 20:28:08.295 * monotonic clock: POSIX clock_gettime
+08 Nov 2021 20:28:08.295 * Running mode=standalone, port=6379.
+08 Nov 2021 20:28:08.295 # Server initialized
+08 Nov 2021 20:28:08.296 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+08 Nov 2021 20:28:08.296 * Loading RDB produced by version 6.2.6
+08 Nov 2021 20:28:08.296 * RDB age 2 seconds
+08 Nov 2021 20:28:08.296 * RDB memory usage when created 0.77 Mb
+08 Nov 2021 20:28:08.296 # Done loading RDB, keys loaded: 0, keys expired: 0.
+08 Nov 2021 20:28:08.296 * DB loaded from disk: 0.000 seconds
+08 Nov 2021 20:28:08.296 * Ready to accept connections
+gnal-handler (1636403298) Received SIGTERM scheduling shutdown...
+08 Nov 2021 20:28:18.221 # User requested shutdown...
+08 Nov 2021 20:28:18.221 * Saving the final RDB snapshot before exiting.
+08 Nov 2021 20:28:18.223 * DB saved on disk
+08 Nov 2021 20:28:18.224 # Redis is now ready to exit, bye bye...
+08 Nov 2021 20:28:29.015 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+08 Nov 2021 20:28:29.015 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+08 Nov 2021 20:28:29.015 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+08 Nov 2021 20:28:29.015 * monotonic clock: POSIX clock_gettime
+08 Nov 2021 20:28:29.016 * Running mode=standalone, port=6379.
+08 Nov 2021 20:28:29.016 # Server initialized
+08 Nov 2021 20:28:29.016 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+08 Nov 2021 20:28:29.016 * Loading RDB produced by version 6.2.6
+08 Nov 2021 20:28:29.016 * RDB age 11 seconds
+08 Nov 2021 20:28:29.016 * RDB memory usage when created 0.77 Mb
+08 Nov 2021 20:28:29.016 # Done loading RDB, keys loaded: 0, keys expired: 0.
+08 Nov 2021 20:28:29.016 * DB loaded from disk: 0.000 seconds
+08 Nov 2021 20:28:29.016 * Ready to accept connections
+08 Nov 2021 21:26:54.028 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+08 Nov 2021 21:26:54.028 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+08 Nov 2021 21:26:54.028 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+08 Nov 2021 21:26:54.029 * monotonic clock: POSIX clock_gettime
+08 Nov 2021 21:26:54.029 * Running mode=standalone, port=6379.
+08 Nov 2021 21:26:54.029 # Server initialized
+08 Nov 2021 21:26:54.029 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+08 Nov 2021 21:26:54.030 * Loading RDB produced by version 6.2.6
+08 Nov 2021 21:26:54.030 * RDB age 3516 seconds
+08 Nov 2021 21:26:54.030 * RDB memory usage when created 0.77 Mb
+08 Nov 2021 21:26:54.030 # Done loading RDB, keys loaded: 0, keys expired: 0.
+08 Nov 2021 21:26:54.030 * DB loaded from disk: 0.000 seconds
+08 Nov 2021 21:26:54.030 * Ready to accept connections
+08 Nov 2021 21:28:04.403 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+08 Nov 2021 21:28:04.403 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+08 Nov 2021 21:28:04.403 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+08 Nov 2021 21:28:04.404 * monotonic clock: POSIX clock_gettime
+08 Nov 2021 21:28:04.404 * Running mode=standalone, port=6379.
+08 Nov 2021 21:28:04.404 # Server initialized
+08 Nov 2021 21:28:04.404 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+08 Nov 2021 21:28:04.404 * Loading RDB produced by version 6.2.6
+08 Nov 2021 21:28:04.405 * RDB age 3586 seconds
+08 Nov 2021 21:28:04.405 * RDB memory usage when created 0.77 Mb
+08 Nov 2021 21:28:04.405 # Done loading RDB, keys loaded: 0, keys expired: 0.
+08 Nov 2021 21:28:04.405 * DB loaded from disk: 0.000 seconds
+08 Nov 2021 21:28:04.405 * Ready to accept connections
+08 Nov 2021 21:28:27.646 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+08 Nov 2021 21:28:27.646 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+08 Nov 2021 21:28:27.646 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+08 Nov 2021 21:28:27.646 * monotonic clock: POSIX clock_gettime
+08 Nov 2021 21:28:27.647 * Running mode=standalone, port=6379.
+08 Nov 2021 21:28:27.647 # Server initialized
+08 Nov 2021 21:28:27.647 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+08 Nov 2021 21:28:27.647 * Loading RDB produced by version 6.2.6
+08 Nov 2021 21:28:27.647 * RDB age 3609 seconds
+08 Nov 2021 21:28:27.647 * RDB memory usage when created 0.77 Mb
+08 Nov 2021 21:28:27.647 # Done loading RDB, keys loaded: 0, keys expired: 0.
+08 Nov 2021 21:28:27.647 * DB loaded from disk: 0.000 seconds
+08 Nov 2021 21:28:27.647 * Ready to accept connections
+09 Nov 2021 22:10:54.715 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+09 Nov 2021 22:10:54.716 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+09 Nov 2021 22:10:54.716 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+09 Nov 2021 22:10:54.717 * monotonic clock: POSIX clock_gettime
+09 Nov 2021 22:10:54.718 * Running mode=standalone, port=6379.
+09 Nov 2021 22:10:54.718 # Server initialized
+09 Nov 2021 22:10:54.718 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+09 Nov 2021 22:10:54.719 * Loading RDB produced by version 6.2.6
+09 Nov 2021 22:10:54.719 * RDB age 92556 seconds
+09 Nov 2021 22:10:54.719 * RDB memory usage when created 0.77 Mb
+09 Nov 2021 22:10:54.719 # Done loading RDB, keys loaded: 0, keys expired: 0.
+09 Nov 2021 22:10:54.719 * DB loaded from disk: 0.000 seconds
+09 Nov 2021 22:10:54.719 * Ready to accept connections
 </pre>
 </html>
+
+What do you think? Is Redis running?
+
+<div class="nav">
+[[Yes -> logs 2]]
+[[No -> logs 2]]
+</div>
+
+:: logs 2
+
+The logs look pretty good, but you still don't feel 100% sure Redis is running.
+You'd prefer to actually connect to the Redis service to be sure.
+
+<div class="nav">
+[[Go back -> redis running 2]]
+</div>
+
+:: redis-cli
+
+<code>
+
+:: telnet
+
+You run <code>telnet</code> to connect to <code>localhost:36379</code> Here's what you see:
+
+<html>
+<pre>
+$ telnet localhost 36379
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
+</pre>
+</html>
+
+What does this mean? Is Redis running?
+
+<div class="nav">
+[[Yes -> telnet 2]]
+[[No -> telnet 2]]
+</div>
+
+:: telnet 2
+
+This telnet output means that <i>something</i> is running on
+<code>localhost:36379</code>, and it's probably Redis.
+
+<<newinfo "You can connect to Redis at localhost:36379 from your computer">>
+
+Now you have a mystery on your hands -- why does connecting to
+<code>localhost:36379</code> work when you do it on the command line, but not
+from the Python server?
+
+:: docker-compose yaml
+
+Here are the contents of <code>docker-compose.yaml</code>. This is the file
+where the container's networking is configured.
+
+<html>
+<pre>
+version: "3" <br>
+services: <br>
+  backend: <br>
+    build: '.' <br>
+    links: <br>
+      - redis:redis <br>
+    ports: <br>
+      - "3000:3000" <br>
+  redis: <br>
+    image: redis <br>
+    container_name: cache <br>
+    ports: <br>
+      - 36379:6379 <br>
+    restart: always
+</pre>
+</html>
+
+<div class="nav">
+[[Go back -> Python program]]
+</div>
 
 :: ping container
 

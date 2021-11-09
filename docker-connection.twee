@@ -369,7 +369,44 @@ You'd prefer to actually connect to the Redis service to be sure.
 
 :: redis-cli
 
-<code>
+<p>
+You run <code>redis-cli</code> to connect to the Redis instance at <code>localhost:36379</code> Here's
+what you see:
+</p>
+
+<html>
+<pre>
+$ redis-cli -h localhost -p 36379 keys "*" <br>
+ <br>
+(empty array)
+</pre>
+</html>
+
+<p>
+What do you think? Does this mean Redis is running?
+</p>
+
+<div class="nav">
+[[Yes -> redis-cli 2]]
+[[No -> redis-cli 2]]
+</div>
+
+:: redis-cli 2
+
+<p>
+The <code>(empty array)</code> output means that we successfully connected to
+Redis, but that the Redis instance is empty. So, it worked!
+</p>
+
+<<newinfo "You <strong>can</strong> connect to Redis at localhost:36379 from the command line">>
+
+Now you have a mystery on your hands -- why does connecting to
+<code>localhost:36379</code> work when you do it on the command line, but not
+from the Python server?
+
+<<ask "What can we do to find out more about this?" "$investigate" "investigate">>
+
+
 
 :: telnet
 
@@ -396,11 +433,82 @@ What does this mean? Is Redis running?
 This telnet output means that <i>something</i> is running on
 <code>localhost:36379</code>, and it's probably Redis.
 
-<<newinfo "You can connect to Redis at localhost:36379 from your computer">>
+<<newinfo "You <strong>can</strong> connect to Redis at localhost:36379 from the command line">>
 
 Now you have a mystery on your hands -- why does connecting to
 <code>localhost:36379</code> work when you do it on the command line, but not
 from the Python server?
+
+<<ask "What can we do to find out more about this?" "$investigate" "investigate">>
+
+:: investigate
+
+<<you-said "Your idea for how to investigate:" $investigate>>
+
+<p>
+We tried connecting to <code>localhost:36379</code> and it worked. But we
+didn't try connecting to <code>localhost:36379</code> from <code>inside</code>
+the Python Docker container.
+</p>
+
+<p>
+Let's try that! How can we run commands inside the Python Docker container?
+</p>
+
+<<ask "How can we run commands inside the Docker container?" "$inside" "investigate 2">>
+
+:: investigate 2
+
+<<you-said "You said" $inside>>
+
+<p>
+We can start a shell inside the Python container with <code>docker-compose exec backend /bin/bash</code>.
+</p>
+
+<html>
+<pre>
+docker-compose exec backend /bin/bash
+root@31762eeecfda:/# 
+</pre>
+</html>
+
+<p>
+You use the shell to run <code>redis-cli</code> inside the Python container.
+</p>
+
+<html>
+<pre>
+root@31762eeecfda:/# redis-cli -h localhost -p 36379 keys "*"
+bash: redis-cli: command not found
+root@31762eeecfda:/# 
+</pre>
+</html>
+
+<p>
+Oops, the Redis CLI isn't installed inside the Python container.
+</p>
+
+<div class="nav">
+[[Install the Redis CLI -> investigate 3]]
+</div>
+
+:: investigate 3
+
+<p>
+You're in an Ubuntu container, so this is pretty straightforward to fix -- you install the Redis CLI with <code> apt-get update && apt-get install redis </code>.
+</p>
+
+Once that's done, you can run it.
+
+<html>
+<pre>
+root@31762eeecfda:/# redis-cli -h localhost -p 36379 keys "*"
+Could not connect to Redis at localhost:36379: Connection refused
+</pre>
+</html>
+
+<<newinfo "You <strong>can't</strong> connect to Redis at localhost:36379 from the command line <strong>inside the container</strong>">>
+
 
 :: docker-compose yaml
 

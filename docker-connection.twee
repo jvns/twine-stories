@@ -15,11 +15,14 @@ The Case of the Failed Docker Connection
 <<init>>
 
 <p>
-Hello! This is a mystery where your goal is to solve a debugging problem!  You'll collect clues, interpret evidence, and ultimately solve the Case of the Slow Websites!
+Hello! This is a mystery where your goal is to solve a debugging problem!
+You'll collect clues, interpret evidence, and ultimately solve the Case of the
+Slow Websites!
 </p>
 
 <p>
-In the sidebar, you'll notice a "What you know" list. As you collect more clues, the list will update with what you've learned.
+In the sidebar, you'll notice a "What you know" list. As you collect more
+clues, the list will update with what you've learned.
 </p>
 
 <p>
@@ -34,19 +37,174 @@ Click "Start" to get started.
 <p>
 You're working on a Python web service, and you decide you need a local cache
 for some data. You decide to use Redis, and so you set up Redis on your
-    computer with Docker Compose.
+computer with Docker Compose.
 </p>
 
 <p>
-But when you try to connect to Redis, you get this error:
+But when you add the Redis code and try to load a page from your server, you get a
+500 internal server error.
 </p>
 
+[[Read the error logs -> Error]]
+
+:: Error
+
+This is the error message your Python service prints out every time you make a request:
+
 <pre>
-backend_1  | redis.exceptions.ConnectionError: Error 99 connecting to localhost:36379. Cannot assign requested address.
+backend_1  | redis.exceptions.ConnectionError: Error 99 connecting <br>
+to localhost:36379. Cannot assign requested address.
 </pre>
 
+That's useful -- we've learned something already!
+
+<<newinfo "The Python program can't connect to localhost:36379">>
+
+
 <div class="nav">
-[[asdf -> asdf]]
-[[Try a speed test->Speed test]]
+[[Read the full error logs -> Read more logs]]
+[[Look at your Python code -> Python program]]
 </div>
 
+:: Read more logs
+
+<html>
+<pre>
+backend_1  | [2021-11-08 21:30:44,180] ERROR in app: Exception on /count [GET] <br>
+backend_1  | Traceback (most recent call last): <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 559, in connect <br>
+backend_1  |     sock = self._connect() <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 615, in _connect <br>
+backend_1  |     raise err <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 603, in _connect <br>
+backend_1  |     sock.connect(socket_address) <br>
+backend_1  | OSError: [Errno 99] Cannot assign requested address <br>
+backend_1  |  <br>
+backend_1  | During handling of the above exception, another exception occurred: <br>
+backend_1  |  <br>
+backend_1  | Traceback (most recent call last): <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 2073, in wsgi_app <br>
+backend_1  |     response = self.full_dispatch_request() <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1518, in full_dispatch_request <br>
+backend_1  |     rv = self.handle_user_exception(e) <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1516, in full_dispatch_request <br>
+backend_1  |     rv = self.dispatch_request() <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1502, in dispatch_request <br>
+backend_1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args) <br>
+backend_1  |   File "/code.py", line 10, in count <br>
+backend_1  |     r.incr('hits') <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/client.py", line 1641, in incr <br>
+backend_1  |     return self.incrby(name, amount) <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/client.py", line 1650, in incrby <br>
+backend_1  |     return self.execute_command('INCRBY', name, amount) <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/client.py", line 898, in execute_command <br>
+backend_1  |     conn = self.connection or pool.get_connection(command_name, **options) <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 1192, in get_connection <br>
+backend_1  |     connection.connect() <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 563, in connect <br>
+backend_1  |     raise ConnectionError(self._error_message(e)) <br>
+backend_1  | redis.exceptions.ConnectionError: Error 99 connecting to localhost:36379. Cannot assign requested address. <br>
+backend_1  | 172.19.0.1 - - [08/Nov/2021 21:30:44] "GET /count HTTP/1.1" 500 - <br>
+backend_1  | [2021-11-08 21:48:49,138] ERROR in app: Exception on /count [GET] <br>
+backend_1  | Traceback (most recent call last): <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 559, in connect <br>
+backend_1  |     sock = self._connect() <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 615, in _connect <br>
+backend_1  |     raise err <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 603, in _connect <br>
+backend_1  |     sock.connect(socket_address) <br>
+backend_1  | OSError: [Errno 99] Cannot assign requested address <br>
+backend_1  |  <br>
+backend_1  | During handling of the above exception, another exception occurred: <br>
+backend_1  |  <br>
+backend_1  | Traceback (most recent call last): <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 2073, in wsgi_app <br>
+backend_1  |     response = self.full_dispatch_request() <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1518, in full_dispatch_request <br>
+backend_1  |     rv = self.handle_user_exception(e) <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1516, in full_dispatch_request <br>
+backend_1  |     rv = self.dispatch_request() <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1502, in dispatch_request <br>
+backend_1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args) <br>
+backend_1  |   File "/code.py", line 10, in count <br>
+backend_1  |     r.incr('hits') <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/client.py", line 1641, in incr <br>
+backend_1  |     return self.incrby(name, amount) <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/client.py", line 1650, in incrby <br>
+backend_1  |     return self.execute_command('INCRBY', name, amount) <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/client.py", line 898, in execute_command <br>
+backend_1  |     conn = self.connection or pool.get_connection(command_name, **options) <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 1192, in get_connection <br>
+backend_1  |     connection.connect() <br>
+backend_1  |   File "/usr/local/lib/python3.8/dist-packages/redis/connection.py", line 563, in connect <br>
+backend_1  |     raise ConnectionError(self._error_message(e)) <br>
+backend_1  | redis.exceptions.ConnectionError: Error 99 connecting to localhost:36379. Cannot assign requested address. <br>
+backend_1  | 172.19.0.1 - - [08/Nov/2021 21:48:49] "GET /count HTTP/1.1" 500 - <br>
+</pre>
+</html>
+
+Do you think there's any more information about the bug here?
+
+<div class="nav">
+[[Yes -> Long error logs 2]]
+[[No -> Long error logs 2]]
+</div>
+
+:: Long error logs 2
+
+The error logs have a lot in them, but the most important thing is that it
+can't connect to <code>localhost:36379</code> -- there's nothing else relevant.
+
+<div class="nav">
+[[Go back -> Error]]
+</div>
+
+
+
+:: Python program
+
+<p>
+Here's what your Python program looks like:
+</p>
+
+<html>
+<pre>
+import redis <br>
+import flask <br>
+ <br>
+print("starting") <br>
+app = flask.Flask(__name__) <br>
+r = redis.Redis(host='localhost', port=36379, db=0) <br>
+ <br>
+@app.route('/count') <br>
+def count(): <br>
+    r.incr('hits') <br>
+    return 'This page has been viewed %s times.' % r.get('hits') <br>
+ <br>
+app.run(host='0.0.0.0', port=3000) <br>
+</pre>
+</html>
+
+The reason this is failing is pretty clear -- this line of code:
+
+<html>
+<pre>
+r = redis.Redis(host='localhost', port=36379, db=0)
+</pre>
+</html>
+
+<p>
+is trying to connect to <code>localhost:36379</code>, but Redis isn't running on that port.
+</p>
+
+<p>
+Next, we need to figure out why Redis isn't running on  <code>localhost:36379</code>! Here are some options:
+</p>
+
+
+
+<div class="nav">
+[[Check if Redis is running -> check redis running]]
+[[Read docker-compose.yaml -> docker-compose yaml]]
+[[Ping the container -> ping container]]
+</div>

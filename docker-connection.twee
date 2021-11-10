@@ -17,7 +17,7 @@ The Case of the Failed Docker Connection
 <p>
 Hello! This is a mystery where your goal is to solve a debugging problem!
 You'll collect clues, interpret evidence, and ultimately solve the Case of the
-Slow Websites!
+Failed Docker Connection!
 </p>
 
 <p>
@@ -35,14 +35,14 @@ Click "Start" to get started.
 :: Landing
 
 <p>
-You're working on a Python web service, and you decide you need a local cache
-for some data. You decide to use Redis, and so you set up Redis on your
-computer with Docker Compose.
+You're working on a Python web service, and you need a local cache for some
+data. You decide to use Redis as a cache, and so you set up a Redis container
+in your local environment with Docker Compose.
 </p>
 
 <p>
 But when you add the Redis code and try to load a page from your server, you get a
-500 internal server error.
+500 internal server error. Oh no!
 </p>
 
 [[Read the error logs -> Error]]
@@ -165,7 +165,7 @@ can't connect to <code>localhost:36379</code> -- there's nothing else relevant.
 :: Python program
 
 <p>
-Here's what your Python program looks like:
+Here's your Python program:
 </p>
 
 <html>
@@ -173,7 +173,6 @@ Here's what your Python program looks like:
 import redis <br>
 import flask <br>
  <br>
-print("starting") <br>
 app = flask.Flask(__name__) <br>
 r = redis.Redis(host='localhost', port=36379, db=0) <br>
  <br>
@@ -199,14 +198,14 @@ is trying to connect to <code>localhost:36379</code>, but Redis isn't running on
 </p>
 
 <p>
-Next, we need to figure out why Redis isn't running on  <code>localhost:36379</code>! Here are some options:
+Next, we need to figure out why Redis isn't running on  <code>localhost:36379</code>! What do you want to try first?
 </p>
 
 
 
 <div class="nav">
-[[Check if Redis is running -> check redis running]]
 [[Read docker-compose.yaml -> docker-compose yaml]]
+[[Check if Redis is running -> check redis running]]
 [[Ping the container -> ping container]]
 </div>
 
@@ -527,7 +526,7 @@ Could not connect to Redis at localhost:36379: Connection refused
 <p> Here's what we've learned from our experiments!</p>
 
 <p>
-<strong>Inside the Python container:</strong>:
+<strong>Inside the Python container:</strong>
 </p>
 
 <p>
@@ -576,7 +575,7 @@ Beware: this game has no way of checking if your answer is right, so it'll tell 
 
 :: guess 2
 
-<<you-said "You said:" $address>>
+<<you-said "You said:" $fix>>
 
 <p>
 This bug is happening because we're using the wrong hostname and port for Redis. 
@@ -590,7 +589,7 @@ IP address.
 </p>
 
 <p>
-You check to see that this actually works:
+You check to see that <code>redis:6379</code> actually works:
 </p>
 
 
@@ -602,6 +601,10 @@ root@bbcf2157926e:/# redis-cli -h redis -p 6379 keys "*" <br>
 </pre>
 </html>
 
+<p>
+Hooray! It works!
+</p>
+
 <div class="nav">
 [[Fix the Python program -> fix Python]]
 </div>
@@ -609,14 +612,13 @@ root@bbcf2157926e:/# redis-cli -h redis -p 6379 keys "*" <br>
 
 :: fix Python
 
-You edit the Python code:
+You edit the Python code to replace <code>localhost</code> with <code>redis</code> and <code>36379</code> with <code>6379</code>:
 
 <html>
 <pre>
 import redis <br>
 import flask <br>
  <br>
-print("starting") <br>
 app = flask.Flask(__name__) <br>
 r = redis.Redis(host='redis', port=6379, db=0) <br>
  <br>
@@ -709,9 +711,13 @@ services: <br>
 </pre>
 </html>
 
+<p>
+Does this look right to you?
+</p>
+
 <div class="nav">
-[[This looks good, go back -> Python program]]
-[[Does this look good? -> docker-compose 2]]
+[[Yes, go back -> Python program]]
+[[I'm not sure -> docker-compose 2]]
 </div>
 
 :: docker-compose 2
@@ -756,7 +762,6 @@ on Mac.
 import redis <br>
 import flask <br>
  <br>
-print("starting") <br>
 app = flask.Flask(__name__) <br>
 r = redis.Redis(host='localhost', port=36379, db=0) <br>
  <br>

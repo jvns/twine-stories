@@ -521,8 +521,6 @@ version: "3" <br>
 services: <br>
   backend: <br>
     build: '.' <br>
-    links: <br>
-      - redis:redis <br>
     ports: <br>
       - "3000:3000" <br>
   redis: <br>
@@ -535,8 +533,23 @@ services: <br>
 </html>
 
 <div class="nav">
-[[Go back -> Python program]]
+[[This looks good, go back -> Python program]]
+[[Does this look good? -> docker-compose 2]]
 </div>
+
+:: docker-compose 2
+
+<p>
+Everything is good! This file is mapping port 6379 inside the container to port 36379 outside the
+container.
+</p>
+
+<p>
+It also sets up <code>redis</code> as a "link" to the Redis container. That means
+that from the Python container you can 
+</p>
+
+[[Go back -> Python program]]
 
 :: ping container
 
@@ -593,8 +606,6 @@ version: "3" <br>
 services: <br>
   backend: <br>
     build: '.' <br>
-    links: <br>
-      - redis:redis <br>
     ports: <br>
       - "3000:3000" <br>
   redis: <br>

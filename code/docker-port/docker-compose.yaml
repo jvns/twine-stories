@@ -2,8 +2,8 @@ version: "3"
 services:
   backend:
     build: '.'
-    links:
-      - redis:redis
+      #links:
+      #  - redis:redis
     ports:
       - "3000:3000"
   redis:

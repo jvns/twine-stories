@@ -545,8 +545,6 @@ container.
 </p>
 
 <p>
-It also sets up <code>redis</code> as a "link" to the Redis container. That means
-that from the Python container you can 
 </p>
 
 [[Go back -> Python program]]

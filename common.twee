@@ -407,4 +407,9 @@ pre {
 
 }
 
+#ui-dialog-title {
+    text-transform: none !important;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
 

@@ -547,3 +547,80 @@ on Mac.
 <div class="nav">
 [[Go back -> Python program]]
 </div>
+
+:: StoryCaption
+
+<div style="text-align: left">
+
+<strong>Files:</strong>
+
+<p style="font-family: monospace; padding-left: 1em;">
+<<link "code.py">>
+  <<script>>
+    Dialog.setup("code.py");
+    Dialog.wiki(`
+<html>
+<pre>
+import redis <br>
+import flask <br>
+ <br>
+print("starting") <br>
+app = flask.Flask(__name__) <br>
+r = redis.Redis(host='localhost', port=36379, db=0) <br>
+ <br>
+@app.route('/count') <br>
+def count(): <br>
+    r.incr('hits') <br>
+    return 'This page has been viewed %s times.' % r.get('hits') <br>
+ <br>
+app.run(host='0.0.0.0', port=3000) 
+</pre>
+</html>
+`);
+    Dialog.open();
+  <</script>>
+<</link>>
+
+<br>
+
+<<link "docker-compose.yaml">>
+  <<script>>
+    Dialog.setup("docker-compose.yaml");
+    Dialog.wiki(`
+<html>
+<pre>
+version: "3" <br>
+services: <br>
+  backend: <br>
+    build: '.' <br>
+    links: <br>
+      - redis:redis <br>
+    ports: <br>
+      - "3000:3000" <br>
+  redis: <br>
+    image: redis <br>
+    container_name: cache <br>
+    ports: <br>
+      - 36379:6379 <br>
+    restart: always
+</pre>
+</html>
+`);
+    Dialog.open();
+  <</script>>
+  <</link>>
+</p>
+
+
+<strong>What you know:</strong>
+<<if $knowledge.size eq 0>> nothing yet!
+<<else>>
+<ol> <<for _i, _name range $knowledge>> <li> _name</li> <</for>> </ol>
+<</if>>
+</div>
+
+<div style="margin-top: 4em">
+<a href="/"><< Back to all puzzles</a>
+</div>
+
+

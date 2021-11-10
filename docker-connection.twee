@@ -540,11 +540,15 @@ services: <br>
 :: docker-compose 2
 
 <p>
-Everything is good! This file is mapping port 6379 inside the container to port 36379 outside the
-container.
+Everything looks good! This file is mapping port 6379 inside the <code>redis</code> container to port 36379 outside the
+container, and port 3000 inside the <code>backend</code> container to port 3000 outside the container.
 </p>
 
 <p>
+One fact that's not obvious here is that in a container in Docker Compose, you
+can use the <code>redis</code> hostname to connect to the Redis container. For
+example, if you're in the <code>backend</code> container,
+<code>redis:6379</code> will connect to the Redis server.
 </p>
 
 [[Go back -> Python program]]
